@@ -6,17 +6,14 @@ import baseTest.BaseTest;
 import pageObjects.HomePage;
 
 public class Test1 extends BaseTest{
-
 	//static elements
 	private HomePage home;
 	public static String TC_expected;
 	public static String TC_Name;
-
 	//sample constructor
 	public Test1(){
 		home = new HomePage();
 	}
-	
 	//sample test
 	@Test(priority=1)
 	public void SelectCity() {
@@ -30,7 +27,4 @@ public class Test1 extends BaseTest{
 			LogFail("TC1", TC_expected, "ERROR", e);
 		}
 	}
-
 }
-
-

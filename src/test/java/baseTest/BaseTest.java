@@ -1,6 +1,5 @@
 package baseTest;
 
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,35 +36,33 @@ public class BaseTest {
 	public static String reportname;
 	public static String className;
 	public String sc = "./screenshots/";
-	public String sriptNAME = "";
-	
+	public String scriptName = "";
 	DesiredCapabilities dc = new DesiredCapabilities();
-	
-	 protected static AndroidDriver<MobileElement> driver;
-
+	protected static AndroidDriver<MobileElement> driver;
 	public String testdatafile = System.getProperty("user.dir") + "/src/test/resources/testData/TestData.properties";
 	public static Properties TD = null;
-	
+
+	//deletes the reports from previous test
 	@BeforeSuite(alwaysRun = true)
 	public static void DeleteReportFiles() throws IOException {
 		File Report = new File(System.getProperty("user.dir") + "/Reports/");
 		System.out.println("Deleting Report files");
 		FileUtils.cleanDirectory(Report);
 	}
-	
+	//open application(setup class initializes the driver)
 	@BeforeClass(alwaysRun = true)
 	public void setup() throws Exception {
 		try {
 			className = this.getClass().getSimpleName();
-			System.out.println(className+"A");
+			System.out.println(className);
 			CreateHTMLLog(className);
-			sriptNAME = className;
+			scriptName = className;
 			TD = new Properties();
 			FileInputStream fsconf1 = new FileInputStream(testdatafile);
 			TD.load(fsconf1);
 			dc.setCapability("reportDirectory", TD.getProperty("reportDirectory"));
 			dc.setCapability("reportFormat", TD.getProperty("reportFormat"));
-			dc.setCapability("testName", "Java Automation");
+			dc.setCapability("testName", "Java Automation:Android");
 			dc.setCapability(MobileCapabilityType.UDID, TD.getProperty("UDID"));
 			dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, TD.getProperty("APP_PACKAGE"));
 			dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, TD.getProperty("APP_ACTIVITY"));
@@ -74,38 +71,40 @@ public class BaseTest {
 			((RemoteWebDriver) driver).setLogLevel(Level.INFO);
 			wait_High();
 			Logpass("TC_default", "Launch App", "App successfully launched");
-
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			LogFail("TC_default", "Launch App", "Error while Launching App", e);
 		}
-		
 	}
-	
+	//closes the application
 	@AfterClass(alwaysRun=true)
 	public void tearDown() throws Exception {
 		System.out.println("After class");
 		driver.closeApp();
 	}
-
+	//custom after suite method, can be useful for external reports
 	@AfterSuite
 	public void finalreport() throws Exception {
-	
+
 	}
-	
+	/*methods checks the presence of an element
+	 *returns true if present
+	 *throws an exception if element is not present*/
+
 	public boolean verify(By ObjectName) throws Exception {
 		boolean displayed = false;
 		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(ObjectName));
 		if (driver.findElement(ObjectName).isDisplayed()) {
-
 			displayed = true;
 		} else {
 			throw new NoSuchElementException();
 		}
 		return displayed;
 	}
-	
+	/*methods checks the presence of an element
+	 *returns true if present
+	 *returns false if element is not present*/
 	public boolean verifyElementExists(By obj) throws Exception {
 		wait_Low();
 		if (driver.findElements(obj).size() != 0) {
@@ -114,7 +113,7 @@ public class BaseTest {
 			return false;
 		}
 	}
-	
+	//method to click an element
 	public void click(By ObjectName) throws Exception {
 		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(ObjectName));
 		if (driver.findElement(ObjectName).isEnabled()) {
@@ -123,12 +122,12 @@ public class BaseTest {
 			throw new NoSuchElementException();
 		}
 	}
-	
+	//method to enter text in a textbox
 	public void enterText(By obj,String val) throws Exception {
 		verify(obj);
 		driver.findElement(obj).sendKeys(val);
 	}
-	
+	//method to scroll until a specific object appears on screen(max 25 times)
 	public void Scroll_Till_ObjVisible(By ObjectName) throws InterruptedException {
 		int count = 0;
 		while (driver.findElements(ObjectName).size() == 0) {
@@ -146,38 +145,35 @@ public class BaseTest {
 		}
 		Thread.sleep(3000);
 	}
-	
+	//wait for 6 seconds
 	public void wait_Medium() throws Exception {
 		Thread.sleep(6000);
 	}
-
+	//wait for 10 seconds
 	public void wait_High() throws Exception {
 		Thread.sleep(10000);
 	}
-
+	//wait for 3 seconds
 	public void wait_Low() throws Exception {
 		Thread.sleep(3000);
 	}
 
-	
-////////////////////////////////////////////////////////Reporting////////////////////////////////////////////////////////
 
+	//###################################################Reporting###################################################//
 	int stepnumber = 1;
-	
-
+	//method returns report name
 	public String getReportname() {
 		return reportname;
 	}
-
+	//method to get current time stamp
 	public String getTimestampl() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String dateFormate = dateFormat.format(date).toString();
 		return dateFormate;
 	}
-
+	//method to create a simple HTML report log
 	public void CreateHTMLLog(String testcaseName) throws Exception {
-	
 		try {
 			System.out.println(testcaseName);
 			createFolders();
@@ -204,9 +200,7 @@ public class BaseTest {
 			System.out.println(e);
 		}
 	}
-	
-	
-
+	//method to create directories for new reports and screenshots(old directories are deleted in BeforeSuite method to delete old reports)
 	public void createFolders() {
 		try {
 			File f1 = new File(System.getProperty("user.dir") + "/Reports");
@@ -229,7 +223,7 @@ public class BaseTest {
 			System.out.println(e);
 		}
 	}
-
+	//creates a unique string based on date and time
 	public static String make_uniq(String recordName) {
 		String timestamp = "";
 		String make_uniqvalue = "";
@@ -244,8 +238,7 @@ public class BaseTest {
 		}
 		return make_uniqvalue;
 	}
-
-
+	//method to get date as string
 	public String date() {
 		SimpleDateFormat formattedDate = new SimpleDateFormat("ddMMyyyy");
 		Calendar c = Calendar.getInstance();
@@ -254,7 +247,7 @@ public class BaseTest {
 		System.out.println("Tomorrows date is " + tomorrow);
 		return tomorrow;
 	}
-
+	//creates a test case fail entry to the report log
 	public void LogFail(String action, String description, String input, Exception Errormessage) {
 		try {
 			String test = make_uniq("CAPTURE_");
@@ -272,17 +265,14 @@ public class BaseTest {
 			System.out.println(e);
 		}
 	}
-
-
-	
+	//method to take screenshot
 	public void testTakesScreenshot(String capture) throws Exception {
-		
+
 		File srcq = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcq, new File("./Reports/logs/screenshots/" + capture));
 	}
-
+	//creates a test case pass entry to the report log
 	public void Logpass(String action, String description, String input) {
-		
 		try {
 			String test = make_uniq("CAPTURE_");
 			testTakesScreenshot(test);
@@ -298,7 +288,4 @@ public class BaseTest {
 			System.out.println(e);
 		}
 	}
-	
-
 }
-
