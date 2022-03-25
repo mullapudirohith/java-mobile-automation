@@ -43,7 +43,7 @@ public class BaseTest {
 	
 	 protected static AndroidDriver<MobileElement> driver;
 
-	public String testdatafile = System.getProperty("user.dir") + "\\src\\test\\resources\\testData\\TestData.properties";
+	public String testdatafile = System.getProperty("user.dir") + "/src/test/resources/testData/TestData.properties";
 	public static Properties TD = null;
 	
 	@BeforeSuite(alwaysRun = true)
