@@ -1,65 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-11-22T12:42:37 IST" name="Suite" finished-at="2021-11-22T12:46:02 IST" duration-ms="205486">
+  <suite name="Default suite" duration-ms="44612" started-at="2022-04-26T14:25:09 IST" finished-at="2022-04-26T14:25:53 IST">
     <groups>
     </groups>
-    <test started-at="2021-11-22T12:42:37 IST" name="Test" finished-at="2021-11-22T12:46:02 IST" duration-ms="205486">
+    <test name="Default test" duration-ms="44612" started-at="2022-04-26T14:25:09 IST" finished-at="2022-04-26T14:25:53 IST">
       <class name="tests.Test1">
-        <test-method is-config="true" signature="DeleteReportFiles()[pri:0, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:42:37 IST" name="DeleteReportFiles" finished-at="2021-11-22T12:42:37 IST" duration-ms="39" status="PASS">
+        <test-method status="PASS" signature="DeleteReportFiles()[pri:0, instance:tests.Test1@770c2e6b]" name="DeleteReportFiles" is-config="true" duration-ms="23" started-at="2022-04-26T14:25:09 IST" finished-at="2022-04-26T14:25:09 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- DeleteReportFiles -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:42:37 IST" name="setup" finished-at="2021-11-22T12:43:01 IST" duration-ms="24246" status="PASS">
+        <test-method status="PASS" signature="setup()[pri:0, instance:tests.Test1@770c2e6b]" name="setup" is-config="true" duration-ms="39195" started-at="2022-04-26T14:25:09 IST" finished-at="2022-04-26T14:25:48 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="SelectCity()[pri:1, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:43:01 IST" name="SelectCity" finished-at="2021-11-22T12:43:23 IST" duration-ms="22019" status="PASS">
+        <test-method status="PASS" signature="Home()[pri:1, instance:tests.Test1@770c2e6b]" name="Home" duration-ms="4381" started-at="2022-04-26T14:25:48 IST" finished-at="2022-04-26T14:25:52 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SelectCity -->
-        <test-method signature="SelectDates()[pri:2, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:43:23 IST" name="SelectDates" finished-at="2021-11-22T12:43:39 IST" duration-ms="15791" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SelectDates -->
-        <test-method signature="SelectGuests()[pri:3, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:43:39 IST" name="SelectGuests" finished-at="2021-11-22T12:43:47 IST" duration-ms="8073" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SelectGuests -->
-        <test-method signature="Click_ShowHotels()[pri:4, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:43:47 IST" name="Click_ShowHotels" finished-at="2021-11-22T12:44:14 IST" duration-ms="26905" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Click_ShowHotels -->
-        <test-method signature="Click_LeastHotel()[pri:5, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:44:14 IST" name="Click_LeastHotel" finished-at="2021-11-22T12:44:44 IST" duration-ms="30549" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Click_LeastHotel -->
-        <test-method signature="Click_LeastRoom()[pri:6, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:44:44 IST" name="Click_LeastRoom" finished-at="2021-11-22T12:44:57 IST" duration-ms="12976" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Click_LeastRoom -->
-        <test-method signature="Enter_Details()[pri:7, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:44:57 IST" name="Enter_Details" finished-at="2021-11-22T12:45:43 IST" duration-ms="45418" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Enter_Details -->
-        <test-method signature="Enter_CardDetails()[pri:8, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:45:43 IST" name="Enter_CardDetails" finished-at="2021-11-22T12:45:56 IST" duration-ms="13001" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Enter_CardDetails -->
-        <test-method signature="Alert_verify()[pri:9, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:45:56 IST" name="Alert_verify" finished-at="2021-11-22T12:46:01 IST" duration-ms="5353" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Alert_verify -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:46:01 IST" name="tearDown" finished-at="2021-11-22T12:46:02 IST" duration-ms="1110" status="PASS">
+        </test-method> <!-- Home -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:tests.Test1@770c2e6b]" name="tearDown" is-config="true" duration-ms="998" started-at="2022-04-26T14:25:52 IST" finished-at="2022-04-26T14:25:53 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="finalreport()[pri:0, instance:tests.Test1@359df09a]" started-at="2021-11-22T12:46:02 IST" name="finalreport" finished-at="2021-11-22T12:46:02 IST" duration-ms="1" status="PASS">
+        <test-method status="PASS" signature="finalreport()[pri:0, instance:tests.Test1@770c2e6b]" name="finalreport" is-config="true" duration-ms="1" started-at="2022-04-26T14:25:53 IST" finished-at="2022-04-26T14:25:53 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- finalreport -->
       </class> <!-- tests.Test1 -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

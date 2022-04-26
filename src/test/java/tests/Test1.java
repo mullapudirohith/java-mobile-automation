@@ -16,11 +16,11 @@ public class Test1 extends BaseTest{
 	}
 	//sample test
 	@Test(priority=1)
-	public void SelectCity() {
+	public void Home() {
 		try {
 			TC_Name="TC1";
-			TC_expected="To Verify Home Button";
-			assertEquals(home.verify_HomePage(), true);
+			TC_expected="To Verify Flights Button";
+			assertEquals(home.verify_Flights(), true);
 			Logpass("TC1", TC_expected, "Home Button exists!");
 		} catch (Exception e) {
 			e.printStackTrace();

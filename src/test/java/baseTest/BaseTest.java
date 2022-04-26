@@ -27,9 +27,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class BaseTest {
@@ -38,7 +42,7 @@ public class BaseTest {
 	public String sc = "./screenshots/";
 	public String scriptName = "";
 	DesiredCapabilities dc = new DesiredCapabilities();
-	protected static AndroidDriver<MobileElement> driver;
+	protected static MobileDriver<MobileElement> driver;
 	public String testdatafile = System.getProperty("user.dir") + "/src/test/resources/testData/TestData.properties";
 	public static Properties TD = null;
 
@@ -62,12 +66,21 @@ public class BaseTest {
 			TD.load(fsconf1);
 			dc.setCapability("reportDirectory", TD.getProperty("reportDirectory"));
 			dc.setCapability("reportFormat", TD.getProperty("reportFormat"));
-			dc.setCapability("testName", "Java Automation:Android");
-			dc.setCapability(MobileCapabilityType.UDID, TD.getProperty("UDID"));
-			dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, TD.getProperty("APP_PACKAGE"));
-			dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, TD.getProperty("APP_ACTIVITY"));
-			dc.setCapability(MobileCapabilityType.NO_RESET, true);
-			driver = new AndroidDriver<MobileElement>(new URL(TD.getProperty("localhosturl")), dc);
+			dc.setCapability("testName", "Java Automation");
+			if(TD.getProperty("DeviceType").equalsIgnoreCase("Android")) 
+			{
+				dc.setCapability(MobileCapabilityType.UDID, TD.getProperty("UDID_ANDROID"));
+				dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, TD.getProperty("APP_PACKAGE"));
+				dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, TD.getProperty("APP_ACTIVITY"));
+				dc.setCapability(MobileCapabilityType.NO_RESET, true);
+				driver = new AndroidDriver<MobileElement>(new URL(TD.getProperty("ExecutionUrl")), dc);
+			}
+			if(TD.getProperty("DeviceType").equalsIgnoreCase("iOS"))
+			{
+				dc.setCapability(MobileCapabilityType.UDID, TD.getProperty("UDID_IOS"));
+				dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, TD.getProperty("BUNDLE_ID"));
+				driver = new IOSDriver<>(new URL(TD.getProperty("ExecutionUrl")), dc);
+			}
 			((RemoteWebDriver) driver).setLogLevel(Level.INFO);
 			wait_High();
 			Logpass("TC_default", "Launch App", "App successfully launched");
@@ -178,7 +191,7 @@ public class BaseTest {
 			System.out.println(testcaseName);
 			createFolders();
 			reportname = make_uniq(testcaseName);
-			System.out.println("REportName >>>" + reportname);
+			System.out.println("ReportName >>>" + reportname);
 			BufferedWriter out = new BufferedWriter(new FileWriter("./Reports/logs/" + reportname + ".html"));
 			out.write("<html><head><title>Demo Java Automation : UI - Automation Report - Step Level</title></head><body>"
 					+ "<caption align = 'center'><font size='3.5' face='Calibri' color = 'black'><h2 style=\"color:blue;\"><font color='#0000FF'>Demo Clear Trip : UI - Automation Report - Step Level</font></h2></font></caption><br>"

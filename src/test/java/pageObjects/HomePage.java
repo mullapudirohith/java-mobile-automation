@@ -6,15 +6,15 @@ import baseTest.BaseTest;
 
 public class HomePage extends BaseTest{
 	//sample page object located by xpath
-	public By HomePage = By.xpath("//*[@text='Home']");
+	public By Flights = By.xpath("//*[@text='Flights']");
 	
 //##########################methods for page objects##########################//
-	//method to verify home button
-	public boolean verify_HomePage() throws Exception {
-		return verify(HomePage);
+	//method to verify flights button
+	public boolean verify_Flights() throws Exception {
+		return verify(Flights);
 	}
-	//method to click home button
-	public void click_HomePage() throws Exception {
-		click(HomePage);
+	//method to click flights button
+	public void click_Flights() throws Exception {
+		click(Flights);
 	}
 }
