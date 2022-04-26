@@ -1,17 +1,28 @@
 # java-mobile-automation
-Java is one of the most versatile programming languages which is platform independent. My current aim is to create an automation framework for applications(native, hybrid) on real Android devices, which can run on any OS.
+Java is one of the most versatile programming languages which is platform independent. My current aim is to create an automation framework for applications(native, hybrid) on real Android and iOS devices.
 
-Setup Steps:
+Common setup steps:
 1. Install latest Eclipse.
 2. Install TestNG Eclipse Plugin from Eclipse Marketplace.
-3. Import the maven project.
-4. Install Appium Studio
-5. Turn on USB debugging in Android device from developer options.
-6. Install the application to be automated in the Android device.
-7. Connect it to PC via usb cable and verify the device is recognised in Appium Studio.
-8. Go to src/test/resources/TestData.properties in IDE and put the UDID of the device, app package and activity names.
-9. Run testng.xml
-10. Check if the desired application is opened on the device.
+3. Import this maven project.
+4. Install Appium Studio and open it.
 
-This is a Page Object Model type automation framework. You can add more objects and methods for the objects for respective pages under src/test/java/pageObjects/. You can refer the default HomePage.java file for info on objects and methods.
-You Can add more tests under src/test/java/tests. You can refer to test1.java for reference on how to create a constructor, call methods from Page Object files and how default methods can be calle from baseTest.java using inheritance.
+Further steps for Android:
+1. Turn on USB debugging in Android device from developer options.
+2. Install the application to be automated in the Android device.
+3. Connect it to PC via usb cable.
+4. open Appium studio, click Add Device>Android Device and verify the device is recognized in Appium Studio.
+5. Go to src/test/resources/TestData.properties in IDE and put the UDID of the device in UDID_ANDROID, app package and activity names in APP_PACKAGE and APP_ACTIVITY respectively, DeviceType as Android.
+6. Add necessary tests in tests package and page objects in pageobjects package under src/test/java.
+7. You can add multiple tests to testng.xml and run them at same time.
+
+Further steps for iOS(need a developer account):
+1. Make sure iTunes and its components are installed if you're using windows machine.
+2. Install the application to be automated in the Android device.
+3. Connect iOS device to PC via USB and allow access to data.
+4. Go to src/test/resources/TestData.properties in IDE and put the UDID of the device in UDID_IOS, bundle ID in BUNDLE_ID, DeviceType as iOS.
+5. Open Appium Studio, go to Tools>iOS Provisioning Profile Management, Register Developer Account.
+6. Login with your developer email and password.(use app specific password if TFA is enabled)
+7. Add necessary tests in tests package and page objects in pageobjects package under src/test/java.
+8. You can add multiple tests to testng.xml and run them at same time.
+
