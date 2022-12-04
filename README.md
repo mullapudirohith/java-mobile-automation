@@ -26,3 +26,7 @@ Further steps for iOS(need a developer account):
 7. Add necessary tests in tests package and page objects in pageobjects package under src/test/java.
 8. You can add multiple tests to testng.xml and run them at same time.
 
+
+Authors:
+1. Rohith Mullapudi
+2. Lasya Vadapalli
